@@ -2,7 +2,7 @@
 
 import { useState, useOptimistic, startTransition, useMemo } from 'react'
 import { Tables } from '@/types/supabase'
-import { Sidebar } from '@/components/sidebar'
+import { Sidebar, MobileSidebar } from '@/components/sidebar'
 import { Header } from '@/components/header'
 import { BookmarkForm } from '@/components/bookmark-form'
 import { BookmarkCard } from '@/components/bookmark-card'
@@ -10,7 +10,7 @@ import { addBookmark, deleteBookmark } from '@/app/dashboard/actions'
 import { AnimatePresence, motion } from 'framer-motion'
 import { toast } from 'sonner'
 import { useRealtimeBookmarks } from '@/hooks/use-realtime-bookmarks'
-import { BookmarkIcon } from 'lucide-react'
+import { BookmarkIcon, Search } from 'lucide-react'
 
 interface DashboardShellProps {
     initialBookmarks: Tables<'bookmarks'>[]
@@ -28,6 +28,7 @@ export function DashboardShell({ initialBookmarks, user }: DashboardShellProps) 
 
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
     const [searchQuery, setSearchQuery] = useState('')
+    const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
 
     const [optimisticBookmarks, setOptimisticBookmarks] = useOptimistic(
         initialBookmarks,
@@ -107,8 +108,17 @@ export function DashboardShell({ initialBookmarks, user }: DashboardShellProps) 
 
     return (
         <>
+            {/* Mobile Sidebar */}
+            <MobileSidebar
+                open={mobileSidebarOpen}
+                onOpenChange={setMobileSidebarOpen}
+                bookmarks={optimisticBookmarks}
+                selectedCategory={selectedCategory}
+                onSelectCategory={setSelectedCategory}
+            />
+
             <div className="flex flex-1 overflow-hidden">
-                {/* Sidebar */}
+                {/* Desktop Sidebar */}
                 <Sidebar
                     bookmarks={optimisticBookmarks}
                     selectedCategory={selectedCategory}
@@ -123,18 +133,31 @@ export function DashboardShell({ initialBookmarks, user }: DashboardShellProps) 
                         count={filteredBookmarks.length}
                         searchQuery={searchQuery}
                         onSearchChange={setSearchQuery}
+                        onMenuClick={() => setMobileSidebarOpen(true)}
                     />
 
-                    <main className="flex-1 overflow-y-auto p-6">
-                        <div className="space-y-6 max-w-full">
+                    <main className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
+                        <div className="space-y-4 sm:space-y-6 max-w-full">
+                            {/* Mobile Search */}
+                            <div className="relative sm:hidden">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                                <input
+                                    type="text"
+                                    placeholder="Search bookmarks..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="h-9 w-full rounded-md border border-border/50 bg-muted/30 pl-9 pr-3 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary/30 transition-colors"
+                                />
+                            </div>
+
                             {/* Form */}
                             <BookmarkForm onAddBookmark={handleAddBookmark} />
 
                             {/* Grid */}
                             {filteredBookmarks.length === 0 ? (
-                                <div className="text-center py-20 px-4">
-                                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-muted/50 mb-4">
-                                        <BookmarkIcon className="h-8 w-8 text-muted-foreground/40" />
+                                <div className="text-center py-12 sm:py-20 px-4">
+                                    <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-muted/50 mb-4">
+                                        <BookmarkIcon className="h-7 w-7 sm:h-8 sm:w-8 text-muted-foreground/40" />
                                     </div>
                                     <h3 className="text-base font-medium mb-1">
                                         {searchQuery ? 'No results found' : selectedCategory ? `No bookmarks in "${selectedCategory}"` : 'No bookmarks yet'}
@@ -146,7 +169,7 @@ export function DashboardShell({ initialBookmarks, user }: DashboardShellProps) 
                             ) : (
                                 <motion.div
                                     layout
-                                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"
+                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4"
                                 >
                                     <AnimatePresence mode="popLayout">
                                         {filteredBookmarks.map((bookmark) => (

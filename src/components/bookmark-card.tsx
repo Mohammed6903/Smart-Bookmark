@@ -54,7 +54,7 @@ export function BookmarkCard({ bookmark, onDelete, isPending }: BookmarkCardProp
                         </div>
                     )}
                     {/* Hover actions overlay */}
-                    <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="absolute top-2 right-2 flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
                         <Button
                             variant="secondary"
                             size="icon"

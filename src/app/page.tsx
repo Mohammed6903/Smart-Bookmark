@@ -23,7 +23,7 @@ export default async function LandingPage() {
 
       {/* Navbar */}
       <header className="relative z-10 border-b border-border/30">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
           <div className="flex items-center gap-2.5">
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground">
               <BookmarkIcon className="h-4 w-4" />
@@ -39,14 +39,14 @@ export default async function LandingPage() {
       </header>
 
       {/* Hero */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-24">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-12 sm:pt-20 md:pt-32 md:pb-24">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary mb-8 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs sm:text-sm text-primary mb-6 sm:mb-8 animate-fade-in-up">
             {/* <Sparkles className="h-3.5 w-3.5" /> */}
             Built with Next.js, Supabase &amp; Real-time Sync
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] mb-6 animate-fade-in-up" style={{ animationDelay: '0.05s' }}>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] mb-4 sm:mb-6 animate-fade-in-up" style={{ animationDelay: '0.05s' }}>
             Save it.
             <br />
             <span className="bg-gradient-to-r from-primary via-blue-400 to-cyan-400 bg-clip-text text-transparent">
@@ -54,7 +54,7 @@ export default async function LandingPage() {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mb-8 sm:mb-10 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             A modern bookmark manager with instant search, category organization, and beautiful previews. Your links, perfectly organized.
           </p>
 
@@ -80,7 +80,7 @@ export default async function LandingPage() {
       </section>
 
       {/* Dashboard Preview */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-20 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
+      <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pb-12 sm:pb-20 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
         <div className="perspective-[2000px]">
           <div className="rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden shadow-2xl shadow-black/30 transform rotate-x-2 hover:rotate-x-0 transition-transform duration-700 ease-out">
             {/* Mock browser bar */}
@@ -110,13 +110,13 @@ export default async function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="relative z-10 max-w-5xl mx-auto px-6 pb-24">
+      <section className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">Everything you need</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">Everything you need</h2>
           <p className="text-muted-foreground">Simple, fast, and thoughtfully designed.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {[
             {
               icon: Zap,
@@ -134,7 +134,7 @@ export default async function LandingPage() {
               desc: "Row-level security ensures only you can access your bookmarks."
             }
           ].map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group p-6 rounded-xl border border-border/40 bg-card/30 hover:bg-card/60 hover:border-border/60 transition-all duration-300">
+            <div key={title} className="group p-5 sm:p-6 rounded-xl border border-border/40 bg-card/30 hover:bg-card/60 hover:border-border/60 transition-all duration-300">
               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
                 <Icon className="h-5 w-5 text-primary" />
               </div>
@@ -146,8 +146,8 @@ export default async function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-border/30 py-8">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="relative z-10 border-t border-border/30 py-6 sm:py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <BookmarkIcon className="h-3.5 w-3.5" />
             Smart Bookmark

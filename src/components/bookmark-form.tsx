@@ -32,16 +32,16 @@ export function BookmarkForm({ onAddBookmark }: BookmarkFormProps) {
                 formRef.current?.reset()
                 await onAddBookmark(formData)
             }}
-            className="w-full rounded-xl border border-border/50 bg-card/50 p-4 space-y-3"
+            className="w-full rounded-xl border border-border/50 bg-card/50 p-3 sm:p-4 space-y-3"
         >
             <Input
                 type="url"
                 name="url"
                 placeholder="Paste URL to save..."
                 required
-                className="h-11 text-sm bg-muted/30 border-border/40 focus:border-primary/50 placeholder:text-muted-foreground/50"
+                className="h-10 sm:h-11 text-sm bg-muted/30 border-border/40 focus:border-primary/50 placeholder:text-muted-foreground/50"
             />
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <Input
                     type="text"
                     name="title"
@@ -52,9 +52,9 @@ export function BookmarkForm({ onAddBookmark }: BookmarkFormProps) {
                     type="text"
                     name="category"
                     placeholder="Category..."
-                    className="h-10 text-sm bg-muted/30 border-border/40 focus:border-primary/50 placeholder:text-muted-foreground/50 w-44"
+                    className="h-10 text-sm bg-muted/30 border-border/40 focus:border-primary/50 placeholder:text-muted-foreground/50 sm:w-44"
                 />
-                <Button type="submit" className="h-10 px-5 gap-2 font-medium shadow-sm">
+                <Button type="submit" className="h-10 px-5 gap-2 font-medium shadow-sm w-full sm:w-auto">
                     <Plus className="h-4 w-4" />
                     Save Bookmark
                 </Button>

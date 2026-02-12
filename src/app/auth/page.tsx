@@ -24,13 +24,13 @@ export default async function AuthPage() {
 
       <div className="relative flex min-h-screen flex-col items-center justify-center p-4">
         {/* Hero Section */}
-        <div className="max-w-6xl w-full mx-auto text-center space-y-8 mb-12">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 animate-fade-in-up">
+        <div className="max-w-6xl w-full mx-auto text-center space-y-6 sm:space-y-8 mb-8 sm:mb-12">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-2 sm:mb-4 animate-fade-in-up">
             {/* <Sparkles className="h-4 w-4 text-primary mr-2" /> */}
             <span className="text-sm font-medium">Built with Next.js & Supabase</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             Your Bookmarks,
             <br />
             <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
@@ -38,7 +38,7 @@ export default async function AuthPage() {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             Save, organize, and access your favorite links from anywhere.
             Lightning fast, secure, and elegantly simple.
           </p>
@@ -82,7 +82,7 @@ export default async function AuthPage() {
         </Card>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto mt-10 sm:mt-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
           <Card className="border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <CardHeader className="text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
