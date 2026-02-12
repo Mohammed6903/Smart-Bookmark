@@ -93,7 +93,7 @@ export default async function LandingPage() {
               <div className="flex-1 flex justify-center">
                 <div className="px-4 py-1 rounded-md bg-muted/30 text-xs text-muted-foreground/60 flex items-center gap-1.5 max-w-xs w-full justify-center">
                   <Search className="h-3 w-3" />
-                  smartbookmark.app/dashboard
+                  smart-bookmark-sable.vercel.app/
                 </div>
               </div>
             </div>
