@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Plus } from 'lucide-react'
@@ -22,7 +22,6 @@ export function BookmarkForm({ onAddBookmark }: BookmarkFormProps) {
                     toast.error("Please enter a URL")
                     return
                 }
-                // Basic sync validation
                 try {
                     new URL(url)
                 } catch {
@@ -33,19 +32,33 @@ export function BookmarkForm({ onAddBookmark }: BookmarkFormProps) {
                 formRef.current?.reset()
                 await onAddBookmark(formData)
             }}
-            className="flex w-full max-w-lg items-center space-x-2"
+            className="w-full rounded-xl border border-border/50 bg-card/50 p-4 space-y-3"
         >
             <Input
                 type="url"
                 name="url"
-                placeholder="https://example.com"
+                placeholder="Paste URL to save..."
                 required
-                className="flex-1"
-                autoComplete="off"
+                className="h-11 text-sm bg-muted/30 border-border/40 focus:border-primary/50 placeholder:text-muted-foreground/50"
             />
-            <Button type="submit">
-                <Plus className="mr-2 h-4 w-4" /> Add
-            </Button>
+            <div className="flex gap-3">
+                <Input
+                    type="text"
+                    name="title"
+                    placeholder="Optional Title..."
+                    className="h-10 text-sm bg-muted/30 border-border/40 focus:border-primary/50 placeholder:text-muted-foreground/50 flex-1"
+                />
+                <Input
+                    type="text"
+                    name="category"
+                    placeholder="Category..."
+                    className="h-10 text-sm bg-muted/30 border-border/40 focus:border-primary/50 placeholder:text-muted-foreground/50 w-44"
+                />
+                <Button type="submit" className="h-10 px-5 gap-2 font-medium shadow-sm">
+                    <Plus className="h-4 w-4" />
+                    Save Bookmark
+                </Button>
+            </div>
         </form>
     )
 }

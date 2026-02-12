@@ -10,7 +10,10 @@ export async function addBookmark(formData: FormData) {
         return { success: false, error: 'URL is required' }
     }
 
-    let title = url
+    // Check if user provided a custom title and category
+    const userProvidedTitle = formData.get('title') as string
+    const category = (formData.get('category') as string)?.trim() || "Favourites"
+    let title = userProvidedTitle?.trim() || url // Use provided title or fallback to URL
     let meta_image = null
     let meta_favicon = null
 
@@ -33,10 +36,13 @@ export async function addBookmark(formData: FormData) {
             const html = await response.text()
             const $ = cheerio.load(html)
 
-            title =
-                $('meta[property="og:title"]').attr('content') ||
-                $('title').text() ||
-                url
+            // Only fetch title from metadata if user didn't provide one
+            if (!userProvidedTitle?.trim()) {
+                title =
+                    $('meta[property="og:title"]').attr('content') ||
+                    $('title').text() ||
+                    url
+            }
             meta_image =
                 $('meta[property="og:image"]').attr('content') ||
                 $('meta[name="twitter:image"]').attr('content') ||
@@ -84,6 +90,7 @@ export async function addBookmark(formData: FormData) {
         const { error } = await supabase.from('bookmarks').insert({
             url,
             title,
+            category,
             meta_image,
             meta_favicon,
             user_id: user.id,

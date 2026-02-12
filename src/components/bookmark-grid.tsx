@@ -8,13 +8,14 @@ import { addBookmark, deleteBookmark } from '@/app/dashboard/actions'
 import { AnimatePresence, motion } from 'framer-motion'
 import { toast } from 'sonner'
 import { useRealtimeBookmarks } from '@/hooks/use-realtime-bookmarks'
+import { BookmarkIcon } from 'lucide-react'
 
 interface BookmarkGridProps {
     initialBookmarks: Tables<'bookmarks'>[]
 }
 
 export function BookmarkGrid({ initialBookmarks }: BookmarkGridProps) {
-    useRealtimeBookmarks() // Enable realtime sync
+    useRealtimeBookmarks()
 
     const [optimisticBookmarks, setOptimisticBookmarks] = useOptimistic(
         initialBookmarks,
@@ -31,15 +32,15 @@ export function BookmarkGrid({ initialBookmarks }: BookmarkGridProps) {
     const handleAddBookmark = async (formData: FormData) => {
         const url = formData.get('url') as string
 
-        // Add optimistic bookmark
         const tempId = crypto.randomUUID()
         const newBookmark: Tables<'bookmarks'> = {
             id: tempId,
-            user_id: '', // Not needed for display
+            user_id: '',
             url: url,
-            title: url, // Temporary title
+            title: url,
             meta_image: null,
             meta_favicon: null,
+            category: 'Favourites',
             created_at: new Date().toISOString(),
         }
 
@@ -69,31 +70,33 @@ export function BookmarkGrid({ initialBookmarks }: BookmarkGridProps) {
     }
 
     return (
-        <div className="space-y-8">
-            <div className="flex justify-center">
-                <BookmarkForm onAddBookmark={handleAddBookmark} />
-            </div>
+        <div className="space-y-6">
+            <BookmarkForm onAddBookmark={handleAddBookmark} />
 
-            <motion.div
-                layout
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-            >
-                <AnimatePresence mode='popLayout'>
-                    {optimisticBookmarks.map((bookmark) => (
-                        <BookmarkCard
-                            key={bookmark.id}
-                            bookmark={bookmark}
-                            onDelete={handleDeleteBookmark}
-                            isPending={(bookmark as any).isPending}
-                        />
-                    ))}
-                </AnimatePresence>
-            </motion.div>
-
-            {optimisticBookmarks.length === 0 && (
-                <div className="text-center text-muted-foreground py-10">
-                    No bookmarks yet. Add one above!
+            {optimisticBookmarks.length === 0 ? (
+                <div className="text-center py-16 px-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-primary/10 mb-3">
+                        <BookmarkIcon className="h-8 w-8 text-primary/60" />
+                    </div>
+                    <h3 className="text-base font-medium mb-1">No bookmarks yet</h3>
+                    <p className="text-sm text-muted-foreground">Add your first bookmark above to get started</p>
                 </div>
+            ) : (
+                <motion.div
+                    layout
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+                >
+                    <AnimatePresence mode='popLayout'>
+                        {optimisticBookmarks.map((bookmark) => (
+                            <BookmarkCard
+                                key={bookmark.id}
+                                bookmark={bookmark}
+                                onDelete={handleDeleteBookmark}
+                                isPending={(bookmark as any).isPending}
+                            />
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
             )}
         </div>
     )

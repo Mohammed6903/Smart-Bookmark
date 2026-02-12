@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import { BookmarkGrid } from '@/components/bookmark-grid'
+import { DashboardShell } from '@/components/dashboard-shell'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,10 +15,7 @@ export default async function DashboardPage() {
         console.error('Error fetching bookmarks:', error)
     }
 
-    return (
-        <div>
-            <h2 className="text-3xl font-bold tracking-tight mb-6">My Bookmarks</h2>
-            <BookmarkGrid initialBookmarks={bookmarks ?? []} />
-        </div>
-    )
+    const { data: { user } } = await supabase.auth.getUser()
+
+    return <DashboardShell initialBookmarks={bookmarks ?? []} user={user!} />
 }

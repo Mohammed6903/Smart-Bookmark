@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       bookmarks: {
         Row: {
+          category: string
           created_at: string
           id: string
           meta_favicon: string | null
@@ -25,6 +26,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          category?: string
           created_at?: string
           id?: string
           meta_favicon?: string | null
@@ -34,6 +36,7 @@ export type Database = {
           user_id?: string
         }
         Update: {
+          category?: string
           created_at?: string
           id?: string
           meta_favicon?: string | null
