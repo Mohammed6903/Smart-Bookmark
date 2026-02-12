@@ -42,7 +42,7 @@ export default async function LandingPage() {
       <section className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary mb-8 animate-fade-in-up">
-            <Sparkles className="h-3.5 w-3.5" />
+            {/* <Sparkles className="h-3.5 w-3.5" /> */}
             Built with Next.js, Supabase &amp; Real-time Sync
           </div>
 
@@ -81,59 +81,32 @@ export default async function LandingPage() {
 
       {/* Dashboard Preview */}
       <section className="relative z-10 max-w-6xl mx-auto px-6 pb-20 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
-        <div className="rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden shadow-2xl shadow-black/20">
-          {/* Mock browser bar */}
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-border/30 bg-card/80">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-red-500/60" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-              <div className="w-3 h-3 rounded-full bg-green-500/60" />
-            </div>
-            <div className="flex-1 flex justify-center">
-              <div className="px-4 py-1 rounded-md bg-muted/30 text-xs text-muted-foreground/60 flex items-center gap-1.5 max-w-xs w-full justify-center">
-                <Search className="h-3 w-3" />
-                smartbookmark.app/dashboard
+        <div className="perspective-[2000px]">
+          <div className="rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden shadow-2xl shadow-black/30 transform rotate-x-2 hover:rotate-x-0 transition-transform duration-700 ease-out">
+            {/* Mock browser bar */}
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-border/30 bg-card/80">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                <div className="w-3 h-3 rounded-full bg-green-500/60" />
               </div>
-            </div>
-          </div>
-          {/* Mock content */}
-          <div className="flex h-72 md:h-80">
-            {/* Sidebar mock */}
-            <div className="w-48 border-r border-border/30 p-4 hidden sm:block">
-              <div className="space-y-2">
-                <div className="h-8 rounded-md bg-primary/10 flex items-center px-3 gap-2">
-                  <div className="w-3 h-3 rounded bg-primary/40" />
-                  <div className="h-2.5 w-16 rounded bg-primary/30" />
+              <div className="flex-1 flex justify-center">
+                <div className="px-4 py-1 rounded-md bg-muted/30 text-xs text-muted-foreground/60 flex items-center gap-1.5 max-w-xs w-full justify-center">
+                  <Search className="h-3 w-3" />
+                  smartbookmark.app/dashboard
                 </div>
-                <div className="pt-3 pb-1">
-                  <div className="h-2 w-14 rounded bg-muted-foreground/15" />
-                </div>
-                {['w-20', 'w-24', 'w-16', 'w-20'].map((w, i) => (
-                  <div key={i} className="h-7 rounded-md flex items-center px-3 gap-2">
-                    <div className="w-3 h-3 rounded bg-muted-foreground/15" />
-                    <div className={`h-2 ${w} rounded bg-muted-foreground/15`} />
-                  </div>
-                ))}
               </div>
             </div>
-            {/* Main mock */}
-            <div className="flex-1 p-4 md:p-6">
-              <div className="h-3 w-36 rounded bg-foreground/10 mb-4" />
-              <div className="h-10 rounded-lg bg-muted/30 mb-6 max-w-md" />
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="rounded-lg border border-border/20 bg-muted/10 overflow-hidden">
-                    <div className="h-16 bg-muted/20" />
-                    <div className="p-3 space-y-2">
-                      <div className="h-2 w-3/4 rounded bg-muted-foreground/10" />
-                      <div className="h-2 w-1/2 rounded bg-muted-foreground/8" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* Screenshot */}
+            <img
+              src="/bookmark_preview.png"
+              alt="Smart Bookmark Manager Dashboard"
+              className="w-full h-auto block"
+            />
           </div>
         </div>
+        {/* Glow under the preview */}
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
       </section>
 
       {/* Features */}

@@ -30,7 +30,7 @@ export default async function AuthLayout({
         {/* Hero Section */}
         <div className="max-w-6xl w-full mx-auto text-center space-y-8 mb-12">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 animate-fade-in-up">
-            <Sparkles className="h-4 w-4 text-primary mr-2" />
+            {/* <Sparkles className="h-4 w-4 text-primary mr-2" /> */}
             <span className="text-sm font-medium">Built with Next.js & Supabase</span>
           </div>
           
